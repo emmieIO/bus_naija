@@ -1,7 +1,8 @@
 # 🚖 bus_naija
 
 ## About Project
-Hi👋🏾, This project is an advanced Bus ticket system, unlike a normal bus ticketing platforms 
+Hi👋🏾, This project is an advanced Bus ticket system, unlike a normal bus ticketing platforms
+* Full authentication with social logins
 * We implement real time location tracking
 * In-app entertainment
 * Emergency Report functionality
