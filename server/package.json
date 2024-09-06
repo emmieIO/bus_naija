@@ -1,11 +1,13 @@
 {
   "name": "bus_naija",
   "version": "1.0.0",
+  "type": "module",
   "description": "Advanced online Bus ticket booking platform with live geo-location tracking",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js"
   },
   "keywords": [
     "online_booking",
@@ -15,6 +17,14 @@
   "author": "emmieIO(Onuoha Nnaemeka Mark)",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-validator": "^7.2.0",
+    "mongoose": "^8.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
