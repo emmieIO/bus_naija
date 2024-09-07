@@ -24,10 +24,10 @@ const Login = () => {
                 <input type='password' id='password' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
             </div>
             <div className='mt-4'>
-                <button type='submit' className='w-full bg-gray-900 text-white p-2 rounded-md'>Login</button>
+                <button type='submit' className='w-full bg-gray-900 text-white p-2 rounded-md'>Sign in</button>
             </div>
             <div className='mt-4'>
-                <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-blue-500'>Register</Link></p>
+                <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-blue-500'>Sign up</Link></p>
             </div>
         </form>
     </div>
