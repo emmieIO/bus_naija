@@ -25,7 +25,11 @@ const AuthLayout = ({ children }) => {
                 </div>
 
 
-                <div className="w-[95%] h-screen place-items-center mx-auto lg:mx-0 lg:w-1/2 flex justify-center">
+                <div className="w-[95%] h-screen place-items-center mx-auto lg:mx-0 lg:w-1/2 flex flex-col justify-center">
+                <h2 className="text-2xl md:hidden flex items-center gap-1 text-gray-900 my-5 font-semibold">
+                                <BusFront className="text-orange-900" />
+                                BusNaija
+                </h2>
                     {children}
                 </div>
             </div>

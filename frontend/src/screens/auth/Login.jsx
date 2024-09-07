@@ -4,9 +4,9 @@ import AuthLayout from '../../shared/AuthLayout'
 const Login = () => {
   return (
     <AuthLayout>
-    <div className='lg:w-2/3 w-full'>
-        <h1 className='text-2xl font-medium text-gray-900'>Welcome Back!🖐🏾</h1>
-        <p className='text-gray-500'>Login to your account</p>
+    <div className='lg:w-2/3 w-11/12'>
+        <h1 className='text-2xl font-medium text-gray-900 md:text-left text-center'>Welcome Back!</h1>
+        <p className='text-gray-500 md:text-left text-center'>Login to your account</p>
         <form className='mt-4'>
             <div>
                 <label htmlFor='email' className='block text-sm text-gray-600'>Email</label>
