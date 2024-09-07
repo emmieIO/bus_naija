@@ -1,9 +1,11 @@
 import express from 'express';
 import cors from 'cors'
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import database from './config/database.js';
 import { errorHandler } from './utils/errorHandler.js';
-import { apiError } from './utils/apiError.js';
+import authRoutes from "./routes/auth.routes.js"
+
 
 dotenv.config();
 database();
@@ -13,10 +15,11 @@ const PORT = process.env.PORT || 4200;
 
 app.use(cors({ origin: "https://bus-naija.onrender.com/" }))
 app.use(express.json());
+app.use(cookieParser());
 
-app.get('/hello', async (req, res, next) => {
-    next(apiError("this is how a 400 error would look", 400));
-})
+// routes
+app.use('/api/auth', authRoutes);
+
 
 //404 Not Found
 app.use((req, res, next) => {
@@ -28,7 +31,7 @@ app.use((req, res, next) => {
 // global error catcher
 app.use(errorHandler);
 
-
+// server listening
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
