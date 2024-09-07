@@ -3,6 +3,7 @@ import userService from "../services/userService.js";
 import { apiError } from "../utils/apiError.js";
 
 
+
 export const register = async (req, res, next)=>{
     try{
         const user = await userService.createUser(req.body);

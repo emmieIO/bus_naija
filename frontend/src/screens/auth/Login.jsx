@@ -1,4 +1,6 @@
-import AuthLayout from '../../shared/AuthLayout'
+import { Link } from 'react-router-dom';
+import AuthLayout from '../../shared/AuthLayout';
+
 
 
 const Login = () => {
@@ -12,12 +14,20 @@ const Login = () => {
                 <label htmlFor='email' className='block text-sm text-gray-600'>Email</label>
                 <input type='email' id='email' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
             </div>
+            <div>
+            <div className='mt-4'>
+                <p className='text-right'><Link to='/register' className='text-blue-500'>Forgot Password</Link></p>
+            </div>
+            </div>
             <div className='mt-4'>
                 <label htmlFor='password' className='block text-sm text-gray-600'>Password</label>
                 <input type='password' id='password' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
             </div>
             <div className='mt-4'>
                 <button type='submit' className='w-full bg-gray-900 text-white p-2 rounded-md'>Login</button>
+            </div>
+            <div className='mt-4'>
+                <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-blue-500'>Register</Link></p>
             </div>
         </form>
     </div>
