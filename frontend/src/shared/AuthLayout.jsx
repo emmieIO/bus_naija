@@ -7,7 +7,7 @@ import { BusFront } from "lucide-react"
 const AuthLayout = ({ children }) => {
     return (
         <div className="">
-            <div className="flex items-center md:h-screen gap-8">
+            <div className="flex items-center md:h-screen h-full md:gap-8">
                 <div className="bg-black hidden lg:block relative self-start my-4 mx-4 rounded-xl w-[500px] h-[600px]">
                     <img src={authImg} className="object-cover h-full w-full rounded-[inherit]" alt={"auth-hero"} />
                     <div className="absolute bg-black inset-0 rounded-[inherit] bg-opacity-90 ">
@@ -25,7 +25,7 @@ const AuthLayout = ({ children }) => {
                 </div>
 
 
-                <div className="w-[95%] mx-auto lg:mx-0 lg:w-1/2 flex justify-center">
+                <div className="w-[95%] h-screen place-items-center mx-auto lg:mx-0 lg:w-1/2 flex justify-center">
                     {children}
                 </div>
             </div>
