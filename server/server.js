@@ -13,7 +13,7 @@ const app = express();
 
 const PORT = process.env.PORT || 4200;
 
-app.use(cors({ origin:["http://localhost:5173", "https://bus-naija.vercel.app/"], credentials: true }))
+app.use(cors({ origin:["http://localhost:5173", "https://bus-naija.vercel.app/", "https://bus-naija.onrender.com"], credentials: true }))
 app.use(express.json());
 app.use(cookieParser());
 
