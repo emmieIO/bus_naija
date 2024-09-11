@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 const authAPI = axios.create({
-  baseURL: 'https://bus-naija.onrender.com',
+  baseURL: 'https://bus-naija.onrender.com/api/',
   headers: {
     'Content-Type': 'application/json',
   },
