@@ -67,8 +67,8 @@ export const refresh_token = async (req, res, next) => {
 export const getUser = async(req,res,next)=>{
     try {
         const {userId} = req.user;
-        const user = await User.findById(userId);
-        res.json({...user._doc, password:undefined})
+        const user = await User.findById(userId).lean();
+        res.json({...user, password:undefined})
     } catch (error) {
         next(error)
     }
@@ -83,9 +83,15 @@ export const logout = async (req,res,next)=>{
     // Clear the refresh token cookie
     res.clearCookie('refreshToken', {
         httpOnly: true,
-        secure: process.env.NODE_ENV = 'production' ? true : false,
+        secure: process.env.NODE_ENV === 'production',
         sameSite: 'Strict',
-        path: '/refresh-token',
+    });
+
+    // Clear the access token cookie
+    res.clearCookie('access_token', {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'strict',
     });
 
     res.json({message:"Logged out successfully"})

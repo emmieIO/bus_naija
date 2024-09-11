@@ -10,7 +10,7 @@ const router = express.Router();
 router.post('/login',loginValidation, validateRequest, login);
 router.post('/refresh-token', refresh_token);
 router.post("/register",registerValidation, validateRequest, register)
-router.get('/user', checkAuth, getUser)
+router.get('/me', checkAuth, getUser)
 router.post("/logout", logout)
 
 

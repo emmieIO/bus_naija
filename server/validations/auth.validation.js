@@ -4,7 +4,8 @@ import User from '../models/user.model.js';
 export const registerValidation = [
     body('firstname').isString().notEmpty().withMessage('Firstname is required'),
     body('lastname').isString().notEmpty().withMessage('Fastname is required'),
-    body('email').isEmail().notEmpty().withMessage('Email is required'),
+    body('email').isEmail().withMessage('Enter a vaild email')
+    .isString().notEmpty().withMessage('Email is required'),
     body('email').custom(async (val)=>{
         const existingUser = await User.findOne({email:val})
         if(existingUser){
@@ -17,8 +18,8 @@ export const registerValidation = [
     .matches(/[A-Z]/).withMessage('Password must contain an uppercase letter')
     .matches(/[a-z]/).withMessage('Password must contain a lowercase letter')
     .matches(/[!@#$%^&*(),.?":{}|<>]/).withMessage('Password must contain a special character'),
-    body('phone').isString().withMessage('Phone is required'),
-    body('address').isString().withMessage('Address is required')
+    body('phone').isString().notEmpty().withMessage('Phone is required'),
+    body('address').isString().notEmpty().withMessage('Address is required')
 ];
 
 export const loginValidation = [
