@@ -1,36 +1,27 @@
-import { useNavigate } from "react-router-dom"
-import PropTypes from 'prop-types'
-import { useGetUserQuery } from "../features/auth/authApi"
-import { useDispatch } from "react-redux"
-import { setCredentials } from "../features/auth/authSlice"
-import { useEffect } from "react"
-
+import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const ProtectedRoute = ({ children }) => {
+    const { isAuthenticated, loading } = useSelector(state=>state.auth);
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const { data: user, error, isSuccess } = useGetUserQuery();
 
-    if (!error) {
-        navigate('/login',{replace:true});
-    }
-    
-    useEffect(()=>{
-        if(user){
-            dispatch(setCredentials({user}));
+    useEffect(() => {
+        if (!loading && !isAuthenticated) {
+            navigate("/login", { replace: true });
         }
-    },[dispatch, user])
-    return (
+    }, [isAuthenticated, loading, navigate]);
 
-        <div>
-            
-            {children}
-        </div>
-    )
+    if (loading) {
+        return <h1>Loading...</h1>;
+    }
+
+    return isAuthenticated ? children : null;
 }
 
 ProtectedRoute.propTypes = {
     children: PropTypes.node.isRequired,
-}
+};
 
-export default ProtectedRoute
+export default ProtectedRoute;
