@@ -1,6 +1,7 @@
 import User from "../models/user.model.js";
 import userService from "../services/userService.js";
 import { apiError } from "../utils/apiError.js";
+import { setSecureCookie } from "../utils/setSecureCookie.js";
 
 
 
@@ -20,19 +21,8 @@ export const login = async (req, res, next) => {
         const { email, password } = req.body
         const user = await userService.userLogin({ email, password });
         const { refresh_token, access_token } = user;
-
-        res.cookie('refresh_token', refresh_token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'None',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        })
-        res.cookie('access_token', access_token, {
-            httpOnly: true,
-            secure: true,
-            sameSite: 'None',
-            maxAge:  15 * 60 * 1000,
-        })
+        setSecureCookie(res, "refesh_token", refresh_token, "https://bus-naija.onrender.com", 7 * 24 * 60 * 60 * 1000 )
+        setSecureCookie(res, "access_token", access_token, "https://bus-naija.onrender.com", 15 * 60 * 1000 )
         res.json({...user, access_token:undefined, refresh_token:undefined});
     } catch (error) {
         next(error)
