@@ -12,8 +12,14 @@ database();
 const app = express();
 
 const PORT = process.env.PORT || 4200;
+const corsOptions = {
+  origin: 'https://bus-naija.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 200
+};
 
-app.use(cors({ origin:["http://localhost:5173", "https://bus-naija.vercel.app/"], credentials: true }))
+app.use(cors(corsOptions))
 app.use(express.json());
 app.use(cookieParser());
 
