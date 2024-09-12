@@ -18,22 +18,17 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
     try {
         const { email, password } = req.body
-        const user = await userService.userLogin({ email, password });
-        const { refresh_token, access_token } = user;
+        const response = await userService.userLogin({ email, password });
+        const { token, user} = response;
 
-        res.cookie('refresh_token', refresh_token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-            maxAge: 7 * 24 * 60 * 60 * 1000,
-        })
-        res.cookie('access_token', access_token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
-            maxAge:  15 * 60 * 1000,
-        })
-        res.json({...user, access_token:undefined, refresh_token:undefined});
+        res.json({
+            success:true,
+            message:"Login successful",
+            token,
+            user:{...user._doc,
+            password:undefined,
+            refreshToken:undefined}
+        });
     } catch (error) {
         next(error)
 
@@ -54,7 +49,7 @@ export const refresh_token = async (req, res, next) => {
         res.cookie("access_token", access_token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'Lax',
+            sameSite: '',
             maxAge:  15 * 60 * 1000,
         })
         res.json({access_token});
@@ -84,14 +79,14 @@ export const logout = async (req,res,next)=>{
     res.clearCookie('refreshToken', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Lax',
+        sameSite: '',
     });
 
     // Clear the access token cookie
     res.clearCookie('access_token', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'Lax',
+        sameSite: '',
     });
 
     res.json({message:"Logged out successfully"})

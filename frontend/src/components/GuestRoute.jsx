@@ -2,6 +2,8 @@ import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from "react";
+import { Loader } from "lucide-react";
+
 
 const GuestRoute = ({ children }) => {
     const { isAuthenticated, loading } = useAuth();
@@ -16,7 +18,9 @@ const GuestRoute = ({ children }) => {
         }
     }, [isAuthenticated, loading, location, navigate]);
 
-
+    if (loading) {
+            return <><Loader/></>;
+    }
     return children;
 };
 

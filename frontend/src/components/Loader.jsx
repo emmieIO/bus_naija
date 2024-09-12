@@ -1,11 +1,13 @@
-import { Spinner } from "@material-tailwind/react"
+
 
 
 const Loader = () => {
   return (
-    <div className='h-screen grid place-items-center'>
-        <Spinner className="h-16 w-16 text-gray-900/50" />
-    </div>
+    <div className="grid h-screen place-items-center">
+                <div className="flex justify-center items-center">
+                    <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-gray-900"></div>
+                </div>
+  </div>
   )
 }
 

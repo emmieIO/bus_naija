@@ -11,11 +11,12 @@ import {
 
 const useAuth = () => {
     const dispatch = useDispatch();
-    const { user, isAuthenticated, loading, error, authChecked } = useSelector((state) => state.auth);
+    const { user, isAuthenticated, loading, error, token, authChecked } = useSelector((state) => state.auth);
 
     return {
         user,
         isAuthenticated,
+        token,
         loading,
         error,
         authChecked,

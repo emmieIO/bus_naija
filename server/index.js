@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import database from './config/database.js';
 import { errorHandler } from './utils/errorHandler.js';
 import authRoutes from "./routes/auth.routes.js";
+import helmet from 'helmet'
 
 dotenv.config();
 database();
@@ -19,6 +20,8 @@ const corsOptions = {
 };
 
 app.disable('x-powered-by');
+app.use(helmet());
+
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');

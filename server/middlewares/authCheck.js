@@ -1,15 +1,21 @@
 import jwt from 'jsonwebtoken'
+import { apiError } from '../utils/apiError.js';
 
-export const checkAuth = (req, res, next)=>{
-    const {access_token} = req.cookies;
-    if(!access_token){
-        return res.status(401).json({message: 'Unauthorized'})
+export const checkAuth = (req, res, next) => {
+    // check if the authorization header present
+    const authHeader = req.headers['authorization'];
+    if (!authHeader) {
+        throw apiError('Unauthorized', 401)
     }
-    try {
-        const decoded = jwt.verify(access_token, process.env.ACCESS_SECRET)
-        req.user = decoded
+
+    // check if the token is valid
+    const token = authHeader.split(' ')[1];
+    jwt.verify(token, process.env.ACCESS_SECRET, (err, user) => {
+        if (err) {
+            throw apiError('Unauthorized', 401)
+        }
+        req.user = user;
         next()
-    } catch (error) {
-        return res.status(401).json({message: 'Unauthorized'})
-    }
+    })
+
 }

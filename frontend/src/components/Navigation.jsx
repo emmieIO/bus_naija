@@ -1,8 +1,9 @@
 import React from "react";
 import {  Home, Info,  Contact, Bus, Menu as MenuIcon, CircleX, Ticket,  PackageCheck, CircleUser, ArrowRightLeft, MapPinCheck, LogOut } from 'lucide-react';
+
 import {
     Navbar,
-    MobileNav,
+    Collapse,
     Typography,
     Button,
     IconButton,
@@ -100,7 +101,7 @@ export default function Navigation() {
                 <div className="hidden lg:block">{navList}</div>
                 <div className="flex items-center gap-x-2">
                     {
-                        isAuthenticated? (
+                        isAuthenticated ? (
                             <Menu>
                                 <MenuHandler>
                                 <Button
@@ -121,37 +122,37 @@ export default function Navigation() {
                                 </MenuHandler>
                                 <MenuList>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <CircleUser Size={15} />
+                                    <CircleUser size={15} />
                                     <Link>
                                     My Profile
                                     </Link>
                                     </MenuItem>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <Ticket Size={15} />
+                                    <Ticket size={15} />
                                     <Link>
                                     My Booking
                                     </Link>
                                     </MenuItem>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <PackageCheck Size={15} />
+                                    <PackageCheck size={15} />
                                     <Link>
                                         My Packages
                                     </Link>
                                     </MenuItem>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <ArrowRightLeft Size={15} />
+                                    <ArrowRightLeft size={15} />
                                     <Link>
                                         My Transactions
                                     </Link>
                                     </MenuItem>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <MapPinCheck Size={15} />
+                                    <MapPinCheck size={15} />
                                     <Link>
                                         Favorite Locations
                                     </Link>
                                     </MenuItem>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
-                                    <LogOut Size={15} />
+                                    <LogOut size={15} />
                                     <Link>
                                         Logout
                                     </Link>
@@ -162,7 +163,7 @@ export default function Navigation() {
                         ):
                         (<>
                     <Button color="green" variant="text" size="sm" className="hidden lg:inline-block">
-                        <Link to={"/login"}>Log In</Link>
+                        <Link className="h-full w-full" to={"/login"}>Log In</Link>
                     </Button>
                     <Button
                         color="green"
@@ -170,7 +171,7 @@ export default function Navigation() {
                         size="sm"
                         className="hidden lg:inline-block"
                     >
-                        <Link to={"/register"}>Sign in</Link>
+                        <Link className="h-full w-full" to={"/register"}>Sign in</Link>
                     </Button>
                         </>)
                     }
@@ -188,19 +189,19 @@ export default function Navigation() {
                     )}
                 </IconButton>
             </div>
-            <MobileNav open={openNav}>
+            <Collapse open={openNav}>
                 <div className="container mx-auto">
                     {navList}
                     <div className="flex items-center gap-x-1">
                         <Button color="green" fullWidth variant="text" size="sm" className="">
-                            <span>Log In</span>
+                            <Link className="h-full w-full" to={'/login'}>Log In</Link>
                         </Button>
                         <Button color="green" fullWidth variant="gradient" size="sm" className="">
-                            <span>Sign in</span>
+                        <Link className="h-full w-full" to={'/register'}>Sign In</Link>
                         </Button>
                     </div>
                 </div>
-            </MobileNav>
+            </Collapse>
         </Navbar>
     );
 }
