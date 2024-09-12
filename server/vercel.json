@@ -7,14 +7,14 @@
         "use": "@vercel/node"
         },
         {
-        "src": "src/**/*",
+        "src": "api/**/*",
         "use": "@vercel/node"
         }
     ],
     "routes": [
         {
-        "src": "/(.*)",
-        "dest": "/"
+        "src": "/api/.*",
+        "dest": "api/index.js"
         }
     ]
 }
