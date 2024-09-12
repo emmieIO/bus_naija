@@ -13,11 +13,13 @@ const app = express();
 
 const PORT = process.env.PORT || 4200;
 const corsOptions = {
-  origin: 'https://bus-naija.vercel.app',
+  origin: 'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 200
 };
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Credentials', true);
+  next();
+});
 
 app.use(cors(corsOptions))
 app.use(express.json());
