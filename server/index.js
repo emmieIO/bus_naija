@@ -24,6 +24,7 @@ app.use((req, res, next) => {
 
 app.use(cors(corsOptions))
 app.use(express.json());
+// cookie Parser
 app.use(cookieParser());
 
 // routes
