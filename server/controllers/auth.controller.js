@@ -24,13 +24,13 @@ export const login = async (req, res, next) => {
         res.cookie('refresh_token', refresh_token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'None',
+            sameSite: 'Lax',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
         res.cookie('access_token', access_token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'None',
+            sameSite: 'Lax',
             maxAge:  15 * 60 * 1000,
         })
         res.json({...user, access_token:undefined, refresh_token:undefined});
@@ -48,13 +48,13 @@ export const refresh_token = async (req, res, next) => {
         res.cookie("refresh_token", newRefreshToken, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'None',
+            sameSite: 'Lax',
             maxAge: 7 * 24 * 60 * 60 * 1000,
         })
         res.cookie("access_token", access_token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            sameSite: 'None',
+            sameSite: 'Lax',
             maxAge:  15 * 60 * 1000,
         })
         res.json({access_token});
