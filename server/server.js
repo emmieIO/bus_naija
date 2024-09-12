@@ -13,7 +13,7 @@ const app = express();
 
 const PORT = process.env.PORT || 4200;
 const corsOptions = {
-  origin: 'https://bus-naija.vercel.app/',
+  origin: 'https://bus-naija.vercel.app',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 app.use((req, res, next) => {
