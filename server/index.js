@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 4200;
 
 const corsOptions = {
-  origin: 'https://bus-naija-1.onrender.com',
+  origin: 'https://bus-naija-1.onrender.com/',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 };
