@@ -16,9 +16,6 @@ const GuestRoute = ({ children }) => {
         }
     }, [isAuthenticated, loading, location, navigate]);
 
-    if (loading) {
-        return <h1>Loading Page...</h1>;
-    }
 
     return children;
 };

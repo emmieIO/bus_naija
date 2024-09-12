@@ -8,6 +8,10 @@ import useAuth  from './hooks/useAuth';
 import { useEffect } from "react";
 import GuestRoute from "./components/GuestRoute";
 import Home from "./screens/Home";
+import About from "./screens/About";
+import Courier from "./screens/Courier";
+import Tickets from "./screens/Tickets";
+import ContactUs from "./screens/ContactUs";
 
 
 
@@ -28,6 +32,10 @@ function App() {
     <div className="">
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/about-us" element={<About/>} />
+        <Route path="/courier" element={<Courier/>} />
+        <Route path="/bus-tickets" element={<Tickets/>} />
+        <Route path="/contact-us" element={<ContactUs/>} />
         <Route path="/Login" element={
           <GuestRoute>
           <Login />

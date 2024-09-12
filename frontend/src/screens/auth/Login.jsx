@@ -5,7 +5,7 @@ import { useState} from 'react';
 import Error from '../../components/Error';
 // import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
-import { Spinner } from '@material-tailwind/react';
+
 
 
 const Login = () => {
@@ -45,8 +45,8 @@ const Login = () => {
                         <Error field={'password'} />
                     </div>
                     <div className='mt-4'>
-                        <button type='button' onClick={handleSubmit} className='w-full bg-gray-900 text-white p-2 rounded-md flex items-center justify-center gap-2'>
-                            {loading && <Spinner/>}Sign in</button>
+                        <button type='button' disabled={loading} onClick={handleSubmit} className='w-full bg-gray-900 text-white p-2 rounded-md flex items-center justify-center gap-2'>
+                            Sign in</button>
                     </div>
                     <div className='mt-4'>
                         <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-blue-500'>Sign up</Link></p>
