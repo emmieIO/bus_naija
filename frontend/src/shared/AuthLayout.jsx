@@ -1,11 +1,13 @@
 import PropTypes from "prop-types"
 import authImg from '../assets/auth-images/auth-hero.jpg'
 import { BusFront } from "lucide-react"
+import GuestRoute from "../components/GuestRoute"
 
 
 
 const AuthLayout = ({ children }) => {
     return (
+        <GuestRoute>
         <div className="">
             <div className="flex items-center md:h-screen h-full md:gap-8">
                 <div className="bg-black hidden lg:block relative self-start my-4 mx-4 rounded-xl w-[500px] h-[600px]">
@@ -34,6 +36,7 @@ const AuthLayout = ({ children }) => {
                 </div>
             </div>
         </div>
+        </GuestRoute>
     )
 }
 

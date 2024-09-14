@@ -6,26 +6,28 @@ import ProtectedRoute from "./components/ProtectedRoute"
 import Dashboard from './screens/Dashboard';
 import useAuth  from './hooks/useAuth';
 import { useEffect } from "react";
-import GuestRoute from "./components/GuestRoute";
 import Home from "./screens/Home";
 import About from "./screens/About";
 import Courier from "./screens/Courier";
 import Tickets from "./screens/Tickets";
 import ContactUs from "./screens/ContactUs";
+import { useDispatch } from 'react-redux';
+import { checkAuthStatus } from "./features/auth/authSlice";
 
 
 
 
 
 function App() {
- const {checkAuthStatus, authChecked, loading} = useAuth();
+ const {authChecked, loading} = useAuth();
+ const dispatch = useDispatch();
 
   useEffect(() => {
     if(!authChecked && !loading){
-      checkAuthStatus()
+      dispatch(checkAuthStatus())
     }
 
-  },[checkAuthStatus, loading , authChecked])
+  },[loading , authChecked, dispatch])
 
 
   return (
@@ -36,11 +38,7 @@ function App() {
         <Route path="/courier" element={<Courier/>} />
         <Route path="/bus-tickets" element={<Tickets/>} />
         <Route path="/contact-us" element={<ContactUs/>} />
-        <Route path="/Login" element={
-          <GuestRoute>
-          <Login />
-          </GuestRoute>
-          } />
+        <Route path="/Login" element={<Login />}/>
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={
           <ProtectedRoute>

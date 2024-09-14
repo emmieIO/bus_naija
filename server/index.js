@@ -14,7 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 4200;
 
 const corsOptions = {
-  origin: 'https://bus-naija-1.onrender.com',
+  origin: process.env.NODE_ENV === 'production' ? 'https://bus-naija-1.onrender.com':'http://localhost:5173',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 };
 

@@ -75,7 +75,6 @@ const authSlice = createSlice({
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
-                
             })
             .addCase(login.fulfilled, (state, action) => {
                 const {token, user} = action.payload;
@@ -88,23 +87,24 @@ const authSlice = createSlice({
             .addCase(login.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                
             })
-            .addCase(register.pending, (state) => {
+            .addCase(register.pending, (state, action) => {
                 state.loading = true;
-                state.error = null;
+                state.error = action.payload;
             })
-            .addCase(register.fulfilled, (state, action) => {
+            .addCase(register.fulfilled, (state) => {
                 state.loading = false;
-                state.user = action.payload;
-                state.isAuthenticated = true;
+                state.error = null;
             })
             .addCase(register.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
+                
             })
             .addCase(logout.fulfilled, (state) => {
                 state.user = null;
+                state.token = null;
+                localStorage.removeItem("token");
                 state.isAuthenticated = false;
             })
             .addCase(checkAuthStatus.pending, (state) => {

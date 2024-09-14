@@ -20,7 +20,6 @@ const GuestRoute = ({ children }) => {
 
     if (loading) {
             return<>
-
             <Loader/>
             </>;
     }

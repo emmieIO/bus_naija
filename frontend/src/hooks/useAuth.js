@@ -8,10 +8,15 @@ import {
     clearErrors
 
 } from "../features/auth/authSlice";
+import { useEffect } from "react";
 
 const useAuth = () => {
     const dispatch = useDispatch();
     const { user, isAuthenticated, loading, error, token, authChecked } = useSelector((state) => state.auth);
+    useEffect(() => {
+        // Clear errors on route change
+        dispatch(clearErrors());
+    }, [dispatch]);
 
     return {
         user,

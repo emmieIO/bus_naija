@@ -2,7 +2,7 @@ import { useState } from "react";
 import Error from "../../components/Error";
 import useAuth from "../../hooks/useAuth";
 import AuthLayout from "../../shared/AuthLayout";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, } from 'react-router-dom';
 import { Spinner } from "@material-tailwind/react";
 
 
@@ -17,16 +17,22 @@ const Register = () => {
         address: '',
         password: ''
     })
+    const { register, loading} = useAuth();
     const navigate = useNavigate();
-    const { register, loading } = useAuth();
+
+
+
     const handleRegister = async (e) => {
         e.preventDefault();
         try {
-            register(form)
-            navigate('/login', {replace:true})
+            const result =  await register(form)
+            if(!result.error){
+                navigate('/login')
+            }
         } catch (error) {
             console.log(error);
         }
+
     }
     return (
         <AuthLayout>
