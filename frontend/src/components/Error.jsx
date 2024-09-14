@@ -12,7 +12,6 @@ const Error = ({field}) => {
     },[error])
     if(!error) return undefined;
     if(error!=null && Array.isArray(error.errors)){
-        console.log(error);
         return error.errors.map((error, index) => {
             if(error.path == field ){
                 return <ul key={index}>

@@ -1,5 +1,5 @@
 import React from "react";
-import {  Home, Info,  Contact, Bus, Menu as MenuIcon, CircleX, Ticket,  PackageCheck, CircleUser, ArrowRightLeft, MapPinCheck, LogOut } from 'lucide-react';
+import {  Home, Info,  Contact, Bus, Menu as MenuIcon, CircleX, Ticket,  PackageCheck, CircleUser, ArrowRightLeft, MapPinCheck, LogOut, Loader } from 'lucide-react';
 
 import {
     Navbar,
@@ -18,7 +18,7 @@ import { useSelector } from "react-redux";
 
 export default function Navigation() {
     const [openNav, setOpenNav] = React.useState(false);
-    const { isAuthenticated } = useSelector(state=>state.auth);
+    const { isAuthenticated, user, loading } = useSelector(state=>state.auth);
 
     React.useEffect(() => {
         window.addEventListener(
@@ -89,19 +89,20 @@ export default function Navigation() {
     );
 
     return (
-        <Navbar className="max-w-[100%] shadow-none rounded-none px-4 py-2 lg:px-8 lg:py-4">
+        <Navbar className="max-w-[90%] mx-auto shadow-none rounded-none px-5 py-2 lg:px-8 lg:py-4">
             <div className=" flex items-center justify-between text-blue-gray-900">
                 <Link
-                    
                     to="/"
                     className="mr-4 text-1xl cursor-pointer py-1.5 font-medium flex gap-2 items-center"
                 >
                     <Bus size={30} className="bg-green-600 p-1 text-white rounded-full" /> <span className="font-medium text-green-600">BusNaija</span>
                 </Link>
                 <div className="hidden lg:block">{navList}</div>
+                {loading ? <><Loader className="animate-spin"/></> :
                 <div className="flex items-center gap-x-2">
                     {
                         isAuthenticated ? (
+                            
                             <Menu>
                                 <MenuHandler>
                                 <Button
@@ -121,6 +122,7 @@ export default function Navigation() {
                                 </Button>
                                 </MenuHandler>
                                 <MenuList>
+                                    <div className="py-3">{user.email}</div>
                                     <MenuItem color="blue-gray" className="flex items-center gap-1">
                                     <CircleUser size={15} />
                                     <Link>
@@ -162,6 +164,7 @@ export default function Navigation() {
                             </Menu>
                         ):
                         (<>
+                        
                     <Button color="green" variant="text" size="sm" className="hidden lg:inline-block">
                         <Link className="h-full w-full" to={"/login"}>Log In</Link>
                     </Button>
@@ -175,7 +178,7 @@ export default function Navigation() {
                     </Button>
                         </>)
                     }
-                </div>
+                </div>}
                 <IconButton
                     variant="text"
                     className="ml-auto h-6 w-6 text-inherit hover:bg-transparent focus:bg-transparent active:bg-transparent lg:hidden"
