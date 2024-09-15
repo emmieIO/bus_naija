@@ -1,13 +1,18 @@
 import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import { toggleSideMenu } from "../../features/dashboard/dashboardSlice";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, LogOut } from "lucide-react";
+import { logout } from "../../features/auth/authSlice";
 
 
 const Topbar = () => {
     const dispatch = useDispatch();
     const {sideMenu} = useSelector(state=>state.dashboard)
     const { user } = useAuth();
+
+    const handleLogout = ()=>{
+        dispatch(logout())
+    }
 
     return (
         <div>
@@ -23,6 +28,9 @@ const Topbar = () => {
                         <span className="text-xs block  text-green-500 font-medium">{new Date().toDateString()}</span>
                         </div>
                     </div>
+                        <button onClick={handleLogout} className="bg-red-500 inline-block p-1 rounded-md text-white">
+                            <LogOut/>
+                        </button>
                 </div>
             </div>
         </div>
