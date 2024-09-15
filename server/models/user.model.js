@@ -2,38 +2,56 @@ import mongoose from "mongoose";
 import bcryptjs from 'bcryptjs'
 
 const userSchema = new mongoose.Schema({
-    firstname: String,
-    lastname: String,
-    email: String,
-    password: String,
-    phone:String,
-    address:String,
+    firstname: {
+        type: String,
+        required: [true, 'Please provide a first name'],
+    },
+
+    lastname: {
+        type: String,
+        required: [true, 'Please provide a last name'],
+    },
+    email: {
+        type: String,
+        required: [true, 'Please provide an email'],
+        unique:true
+    },
+    password: {
+        type: String,
+        required: [true, 'Please provide a password'],
+        minlength: 8,
+        
+    },
+    phone:{
+        type: String,
+        required: [true, 'Please provide a phone number'],
+    },
+    address:{
+        type: String,
+        required: [true, 'Please provide an address'],
+    },
     socialLogins: [
         { provider: String, id: String }
     ],
-    roles:[{ type: mongoose.Schema.ObjectId, ref: 'Location' }],
-    favoriteLocations: [{ type: mongoose.Schema.ObjectId, ref: 'Location' }],
-    wallet: {
-        balance: Number,
-        transactions: [{ type:mongoose.Schema.ObjectId, ref: 'Transaction' }]
+    roles:{
+        type: String,
+        enum: ['user', 'admin'],
+        default: 'user'
     },
     verificationToken:{
-        type:String,
-        default:null
+        type:String
+
     },
     resetToken:{
-        type:String,
-        default:null
+        type:String
     },
     verifiedAt:{
-        type:Date,
-        default:null
+        type:Date
     },
     isVerified:{
         type:Boolean,
         default:false
     },
-    refreshToken:String
 },{ timestamps: true })
 
 userSchema.pre('save', async function(next){
