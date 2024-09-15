@@ -26,9 +26,8 @@ const Login = () => {
     }
     return (
         <AuthLayout>
-            <div className='lg:w-2/3 w-11/12'>
-                <h1 className='text-2xl font-medium text-gray-900 md:text-left text-center'>Welcome Back!</h1>
-                <p className='text-gray-500 md:text-left text-center'>Login to your account</p>
+                <h1 className='text-2xl font-medium text-gray-900 text-center'>Welcome Back!</h1>
+                <p className='text-gray-500  text-center'>Login to your account</p>
                 <form className='mt-4'>
                     <div>
                         <label htmlFor='email' className='block text-sm text-gray-600'>Email</label>
@@ -37,7 +36,7 @@ const Login = () => {
                     </div>
                     <div>
                         <div className='mt-4'>
-                            <p className='text-right'><Link to='/register' className='text-blue-500'>Forgot Password</Link></p>
+                            <p className='text-right'><Link to='/register' className='text-green-600'>Forgot Password</Link></p>
                         </div>
                     </div>
                     <div className='mt-4'>
@@ -46,14 +45,13 @@ const Login = () => {
                         <Error field={'password'} />
                     </div>
                     <div className='mt-4'>
-                        <button type='button' disabled={loading} onClick={handleSubmit} className='w-full bg-gray-900 text-white p-2 rounded-md flex items-center justify-center gap-2'>
+                        <button type='button' disabled={loading} onClick={handleSubmit} className='w-full bg-green-600 text-white p-2 rounded-md flex items-center justify-center gap-2'>
                             Sign in</button>
                     </div>
                     <div className='mt-4'>
-                        <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-blue-500'>Sign up</Link></p>
+                        <p className='text-center'>Don&apos;t have an account? <Link to='/register' className='text-green-600'>Sign up</Link></p>
                     </div>
                 </form>
-            </div>
         </AuthLayout>
     )
 }

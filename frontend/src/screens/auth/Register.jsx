@@ -36,9 +36,9 @@ const Register = () => {
     }
     return (
         <AuthLayout>
-            <div className='lg:w-2/3 w-11/12'>
-                <h1 className='text-2xl font-medium text-gray-900 md:text-left text-center'>Create new account</h1>
-                <p className='text-gray-500 md:text-left text-center'>Signup for an account with busnaija</p>
+            
+                <h1 className='text-2xl font-medium text-gray-900 text-center'>Create new account</h1>
+                <p className='text-gray-500 text-center'>Signup for an account with busnaija</p>
                 <form className='mt-4 space-y-4'>
                     <div className="flex gap-2 items-center">
                         <div className="mt-4">
@@ -94,13 +94,12 @@ const Register = () => {
                         <Error field={'password'} />
                     </div>
                     <div className='mt-4'>
-                        <button onClick={handleRegister} type='submit' className='w-full flex items-center justify-center gap-2 bg-gray-900 text-white p-2 rounded-md'>{loading && <Spinner />}Sign up</button>
+                        <button onClick={handleRegister} type='submit' className='w-full flex items-center justify-center gap-2 bg-green-600 text-white p-2 rounded-md'>{loading && <Spinner />}Sign up</button>
                     </div>
-                    <div className=''>
-                        <p className='text-center'>have an account already ? <Link to='/login' className='text-blue-500'>Sign in</Link></p>
+                    <div className='py-10'>
+                        <p className='text-center '>have an account already ? <Link to='/login' className='text-green-600'>Sign in</Link></p>
                     </div>
                 </form>
-            </div>
         </AuthLayout>
     )
 }
