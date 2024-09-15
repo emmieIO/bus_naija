@@ -94,7 +94,7 @@ const Register = () => {
                         <Error field={'password'} />
                     </div>
                     <div className='mt-4'>
-                        <button onClick={handleRegister} type='submit' className='w-full flex items-center justify-center gap-2 bg-green-600 text-white p-2 rounded-md'>{loading && <Spinner />}Sign up</button>
+                        <button onClick={handleRegister} disabled={loading} type='submit' className='w-full flex items-center justify-center gap-2 disabled:bg-green-300 bg-green-600 text-white p-2 rounded-md'>{loading && <Spinner />}Sign up</button>
                     </div>
                     <div className='py-10'>
                         <p className='text-center '>have an account already ? <Link to='/login' className='text-green-600'>Sign in</Link></p>

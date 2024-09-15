@@ -2,7 +2,7 @@ import useAuth from "../hooks/useAuth";
 import { useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { useEffect } from "react";
-import Loader from "./Loader";
+// import Loader from "./Loader";
 
 
 const GuestRoute = ({ children }) => {
@@ -18,11 +18,11 @@ const GuestRoute = ({ children }) => {
         }
     }, [isAuthenticated, loading, location, navigate]);
 
-    if (loading) {
-            return<>
-            <Loader/>
-            </>;
-    }
+    // if (loading) {
+    //         return<>
+    //         <Loader/>
+    //         </>;
+    // }
     return children;
 };
 
