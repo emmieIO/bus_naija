@@ -14,55 +14,53 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Please provide an email'],
-        unique:true
+        unique: true
     },
     password: {
         type: String,
         required: [true, 'Please provide a password'],
         minlength: 8,
-        
+
     },
-    phone:{
+    phone: {
         type: String,
         required: [true, 'Please provide a phone number'],
     },
-    address:{
+    address: {
         type: String,
         required: [true, 'Please provide an address'],
     },
-    socialLogins: [
-        { provider: String, id: String }
-    ],
-    roles:{
+    roles: {
         type: String,
-        enum: ['user', 'admin'],
+        enum: ['user', 'admin', 'bus operator'],
         default: 'user'
     },
-    verificationToken:{
-        type:String
+    verificationToken: {
+        type: String
 
     },
-    resetToken:{
-        type:String
+    resetToken: {
+        type: String
     },
-    verifiedAt:{
-        type:Date
+    verifiedAt: {
+        type: Date
     },
-    isVerified:{
-        type:Boolean,
-        default:false
+    isVerified: {
+        type: Boolean,
+        default: false
     },
-},{ timestamps: true })
+    dateRegistered: { type: Date, default: Date.now }
+}, { timestamps: true })
 
-userSchema.pre('save', async function(next){
-    if(!this.isModified('password')){
+userSchema.pre('save', async function (next) {
+    if (!this.isModified('password')) {
         next()
     }
     const salt = await bcryptjs.genSalt(10)
     this.password = await bcryptjs.hash(this.password, salt)
 });
 
-userSchema.methods.matchPassword = async function(enteredPassword){
+userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcryptjs.compare(enteredPassword, this.password)
 }
 

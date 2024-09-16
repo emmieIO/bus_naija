@@ -1,16 +1,10 @@
-
-import Navigation from './../components/Navigation';
-import Footer from './../components/Footer';
+import AppLayout from '../shared/AppLayout';
 
 const About = () => {
   return (
-    <div>
-      <Navigation/>
-        <div className="h-[70vh] flex justify-center items-center">
+    <AppLayout>     
         <h1 className="text-4xl font-bold text-gray-800">About Us</h1>
-      </div>
-      <Footer/>
-    </div>
+    </AppLayout>
   )
 }
 

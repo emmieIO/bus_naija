@@ -2,45 +2,16 @@ import mongoose from 'mongoose';
 
 
 const busSchema = new mongoose.Schema({
-    busNumber: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    busType: {
-        type: String,
-        required: true
-    },
-    busCapacity: {
-        type: Number,
-        required: true
-    },
-    busRoute: {
-        type: String,
-        required: true
-    },
-    busDriver: {
-        type: String,
-        required: true
-    },
-    busConductor: {
-        type: String,
-        required: true
-    },
-    busStatus: {
-        type: String,
-        required: true
-    },
-    busLocation: {
-        type: String,
-        required: true
-    },
-    busImage: {
-        type: String,
-        required: true
-    }
-}, {
-    timestamps: true
-});
+    registrationNumber: { type: String, required: true, unique: true },
+    model: { type: String, required: true },
+    capacity: { type: Number, required: true },
+    manufactureYear: { type: Number, required: true },
+    lastMaintenanceDate: Date,
+    nextMaintenanceDate: Date,
+    status: { type: String, enum: ['Active', 'Under Maintenance', 'Out of Service'], default: 'Active' },
+    operator: { type: mongoose.Schema.Types.ObjectId, ref: 'BusOperator' },
+    features: [String],
+    images:[String]
+  });
 const Bus = mongoose.model('Bus', busSchema);
 export default Bus;
