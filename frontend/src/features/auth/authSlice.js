@@ -10,6 +10,17 @@ const initialState = {
     authChecked: false,
 }
 
+
+
+// Generalized Error Handling
+const handleError = (error, rejectWithValue) => {
+    if (error.response) {
+        return rejectWithValue(error.response.data);
+    } else {
+        return rejectWithValue({ message: "Network error" });
+    }
+};
+
 // AsyncThunk
 export const login = createAsyncThunk('auth/login', async (data, { rejectWithValue }) => {
     try {
@@ -17,7 +28,7 @@ export const login = createAsyncThunk('auth/login', async (data, { rejectWithVal
         const res = await authAPI.post("auth/login", { email, password });
         return res.data
     } catch (error) {
-        return rejectWithValue(error.response.data)
+        return handleError(error, rejectWithValue);
     }
 });
 
@@ -26,50 +37,36 @@ export const register = createAsyncThunk('auth/register', async (data, { rejectW
         const res = await authAPI.post("auth/register", data);
         return res.data;
     } catch (error) {
-        return rejectWithValue(error.response.data)
+        return handleError(error, rejectWithValue);
     }
 })
 
-export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(data, {rejectWithValue})=>{
+export const verifyEmail = createAsyncThunk('auth/verifyEmail', async (data, { rejectWithValue }) => {
     try {
-        const res = await authAPI.post("auth/verify-email", data,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
-        });
+        const res = await authAPI.post("auth/verify-email", data);
+        return res.data;
+    } catch (error) {
+        return handleError(error, rejectWithValue);
+    }
+})
+
+export const resendCode = createAsyncThunk('auth/resendVerificationCode', async (data, { rejectWithValue }) => {
+    try {
+        const res = await authAPI.post("auth/resend-verification-code", data);
         return res.data;
     } catch (error) {
         return rejectWithValue(error.response.data)
     }
 })
 
-export const resendCode = createAsyncThunk('auth/resendVerificationCode', async (data, {rejectWithValue})=>{
+export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { rejectWithValue }) => {
     try {
-        const res = await authAPI.post("auth/resend-verification-code", data,{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
-        });
+        const res = await authAPI.get("auth/me");
         return res.data;
     } catch (error) {
-        return rejectWithValue(error.response.data)
+        return handleError(error, rejectWithValue);
     }
 })
-
-export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { rejectWithValue })=>{
-    try {
-        const res = await authAPI.get("auth/me",{
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`
-            }
-        });
-        return res.data;
-    } catch (error) {
-        return rejectWithValue(error.response.data)
-    }
-})
-
-
 // End AsyncThunk
 
 const authSlice = createSlice({
@@ -79,12 +76,18 @@ const authSlice = createSlice({
         clearErrors: (state) => {
             state.error = null;
         },
+        resetState: (state) => {
+            Object.assign(state, initialState);
+            state.token = null;
+        },
         logout: (state) => {
+            // This is the actual logout logic
+            localStorage.removeItem('token');
+            delete authAPI.defaults.headers.common['Authorization'];
             state.user = null;
             state.token = null;
-            state.isAuthenticated = false,
-            localStorage.removeItem('token')
-        }
+            state.isAuthenticated = false;
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -93,7 +96,7 @@ const authSlice = createSlice({
                 state.error = null;
             })
             .addCase(login.fulfilled, (state, action) => {
-                const {token, user} = action.payload;
+                const { token, user } = action.payload;
                 state.loading = false;
                 state.user = user;
                 state.token = token
@@ -108,8 +111,13 @@ const authSlice = createSlice({
                 state.loading = true;
                 state.error = action.payload;
             })
-            .addCase(register.fulfilled, (state) => {
+            .addCase(register.fulfilled, (state, action) => {
+                const { token, user } = action.payload;
                 state.loading = false;
+                state.user = user;
+                state.isAuthenticated = true;
+                state.token = token
+                JSON.stringify(localStorage.setItem("token", token));
                 state.error = null;
             })
             .addCase(register.rejected, (state, action) => {
@@ -136,5 +144,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { clearErrors, logout } = authSlice.actions;
+export const { clearErrors, resetState, logout } = authSlice.actions;
 export default authSlice.reducer;

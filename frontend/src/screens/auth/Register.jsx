@@ -27,7 +27,7 @@ const Register = () => {
         try {
             const result =  await register(form)
             if(!result.error){
-                navigate('/login')
+                navigate('/verify-account')
             }
         } catch (error) {
             console.log(error);

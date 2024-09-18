@@ -24,6 +24,7 @@ function App() {
  const dispatch = useDispatch();
 
   useEffect(() => {
+    // dispatch(checkAuthStatus());
     if(!authChecked && !loading){
       dispatch(checkAuthStatus())
     }

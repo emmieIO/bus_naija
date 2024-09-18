@@ -2,7 +2,6 @@ import { useSelector, useDispatch } from "react-redux";
 import {
     login,
     register,
-    logout,
     verifyEmail,
     resendCode,
     checkAuthStatus,
@@ -28,7 +27,6 @@ const useAuth = () => {
         authChecked,
         login: (data) => dispatch(login(data)),
         register: (data) => dispatch(register(data)),
-        logout: () => dispatch(logout()),
         checkAuthStatus: () => dispatch(checkAuthStatus()),
         verifyEmail: (data) => dispatch(verifyEmail(data)),
         resendCode: (data) => dispatch(resendCode(data)),

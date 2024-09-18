@@ -4,6 +4,7 @@ import { useState} from 'react';
 import Error from '../../components/Error';
 import useAuth from '../../hooks/useAuth';
 import { Spinner } from '@material-tailwind/react';
+import toast from 'react-hot-toast';
 
 
 
@@ -18,7 +19,10 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            login({ email, password })
+            const result = await login({ email, password })
+            if(!loading && !result.error){
+                toast.success("Login successful")
+            }
         } catch (error) {
             console.log(error);
 

@@ -3,6 +3,7 @@ import {motion} from 'framer-motion';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
+
 const AppLayout = ({children}) => {
   return (
     <motion.div

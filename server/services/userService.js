@@ -22,7 +22,8 @@ class UserService {
                     code: verificationCode
                 })
             }
-            return user
+            const token = generateToken(user._id)
+            return {user, token}
         } catch (error) {
             throw error
         }
@@ -33,13 +34,13 @@ class UserService {
             const { email, password } = data;
             const user = await User.findOne({ email });
             if (!user) {
-                throw apiError('Invalid email or password', 403)
+                throw apiError('Credentials not found in our records', 403)
             }
             const isMatch = await user.matchPassword(password)
             if (!isMatch) {
                 throw apiError('Credentials not found in our records', 403)
             }
-            const token = generateToken(user._id);
+            const token = generateToken(user._id)
             user.save();
             return {user, token}
         } catch (error) {
@@ -108,3 +109,4 @@ class UserService {
 
 const userService = new UserService();
 export default userService;
+;

@@ -2,16 +2,20 @@ import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import { toggleSideMenu } from "../../features/dashboard/dashboardSlice";
 import { ChevronLeft, ChevronRight, LogOut } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
-
 
 const Topbar = () => {
     const dispatch = useDispatch();
     const {sideMenu} = useSelector(state=>state.dashboard)
-    const { user } = useAuth();
+    const { user} = useAuth();
+    const navigate = useNavigate();
 
     const handleLogout = ()=>{
         dispatch(logout())
+        navigate('/login')
+
+
     }
 
     return (

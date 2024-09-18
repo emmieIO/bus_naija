@@ -6,13 +6,17 @@ import { apiError } from "../utils/apiError.js";
 
 export const register = async (req, res, next) => {
     try {
-        const user = await userService.createUser(req.body);
-        res.status(201).json({ ...user._doc, password: undefined });
+        const {user, token} = await userService.createUser(req.body);
+        res.status(201).json({
+            success:true,
+            message:"Success!, verify Account",
+            token,
+            user:{...user._doc,
+            password:undefined}
+        })
     } catch (error) {
         next(error);
     }
-
-
 }
 
 export const login = async (req, res, next) => {
@@ -26,8 +30,7 @@ export const login = async (req, res, next) => {
             message:"Login successful",
             token,
             user:{...user._doc,
-            password:undefined,
-            refreshToken:undefined}
+            password:undefined}
         });
     } catch (error) {
         next(error)
