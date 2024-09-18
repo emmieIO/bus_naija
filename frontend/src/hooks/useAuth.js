@@ -1,9 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import {
     login,
-    refreshToken,
     register,
     logout,
+    verifyEmail,
+    resendCode,
     checkAuthStatus,
     clearErrors
 
@@ -26,10 +27,11 @@ const useAuth = () => {
         error,
         authChecked,
         login: (data) => dispatch(login(data)),
-        refreshToken: () => dispatch(refreshToken()),
         register: (data) => dispatch(register(data)),
         logout: () => dispatch(logout()),
         checkAuthStatus: () => dispatch(checkAuthStatus()),
+        verifyEmail: (data) => dispatch(verifyEmail(data)),
+        resendCode: (data) => dispatch(resendCode(data)),
         clearErrors: () => dispatch(clearErrors())
     };
 }

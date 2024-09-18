@@ -13,6 +13,7 @@ import Tickets from "./screens/Tickets";
 import ContactUs from "./screens/ContactUs";
 import { useDispatch } from 'react-redux';
 import { checkAuthStatus } from "./features/auth/authSlice";
+import VerifyAccount from "./screens/auth/VerifyAccount";
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/contact-us" element={<ContactUs/>} />
         <Route path="/Login" element={<Login />}/>
         <Route path="/register" element={<Register />} />
+        <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard/>

@@ -21,15 +21,6 @@ export const login = createAsyncThunk('auth/login', async (data, { rejectWithVal
     }
 });
 
-export const refreshToken = createAsyncThunk('auth/refreshToken', async ({ rejectWithValue }) => {
-    try {
-        const res = await authAPI.post("auth/refresh-token");
-        return res.data;
-    } catch (error) {
-        return rejectWithValue(error.response.data)
-    }
-})
-
 export const register = createAsyncThunk('auth/register', async (data, { rejectWithValue }) => {
     try {
         const res = await authAPI.post("auth/register", data);
@@ -39,7 +30,33 @@ export const register = createAsyncThunk('auth/register', async (data, { rejectW
     }
 })
 
-export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { rejectWithValue }) => {
+export const verifyEmail = createAsyncThunk('auth/verifyEmail', async(data, {rejectWithValue})=>{
+    try {
+        const res = await authAPI.post("auth/verify-email", data,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data)
+    }
+})
+
+export const resendCode = createAsyncThunk('auth/resendVerificationCode', async (data, {rejectWithValue})=>{
+    try {
+        const res = await authAPI.post("auth/resend-verification-code", data,{
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        });
+        return res.data;
+    } catch (error) {
+        return rejectWithValue(error.response.data)
+    }
+})
+
+export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_, { rejectWithValue })=>{
     try {
         const res = await authAPI.get("auth/me",{
             headers: {
@@ -52,14 +69,7 @@ export const checkAuthStatus = createAsyncThunk('auth/checkAuthStatus', async (_
     }
 })
 
-export const logout = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
-    try {
-        const res = await authAPI.post("auth/logout");
-        return res.data;
-    } catch (error) {
-        return rejectWithValue(error.response.data);
-    }
-})
+
 // End AsyncThunk
 
 const authSlice = createSlice({
@@ -69,6 +79,12 @@ const authSlice = createSlice({
         clearErrors: (state) => {
             state.error = null;
         },
+        logout: (state) => {
+            state.user = null;
+            state.token = null;
+            state.isAuthenticated = false,
+            localStorage.removeItem('token')
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -99,13 +115,6 @@ const authSlice = createSlice({
             .addCase(register.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-                
-            })
-            .addCase(logout.fulfilled, (state) => {
-                state.user = null;
-                state.token = null;
-                localStorage.removeItem("token");
-                state.isAuthenticated = false;
             })
             .addCase(checkAuthStatus.pending, (state) => {
                 state.loading = true;
@@ -127,5 +136,5 @@ const authSlice = createSlice({
     }
 })
 
-export const { clearErrors } = authSlice.actions;
+export const { clearErrors, logout } = authSlice.actions;
 export default authSlice.reducer;

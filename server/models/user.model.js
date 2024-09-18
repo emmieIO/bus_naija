@@ -35,14 +35,16 @@ const userSchema = new mongoose.Schema({
         enum: ['user', 'admin', 'bus operator'],
         default: 'user'
     },
-    verificationToken: {
-        type: String
-
-    },
     resetToken: {
         type: String
     },
-    verifiedAt: {
+    resetTokenExpiresAt: {
+        type: Date
+    },
+    verificationCode: {
+        type: String
+    },
+    verificationCodeExpiresAt: {
         type: Date
     },
     isVerified: {

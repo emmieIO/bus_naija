@@ -11,8 +11,8 @@ const AuthLayout = ({ children }) => {
             <div className="">
                 <div className="grid min-h-screen place-items-center bg-green-200">
                     <div className="bg-white my-10 p-5 rounded-md shadow-sm mx-5">
-                        <Link to={'/'} className="text-2xl flex gap-x-2 items-center justify-center py-5 font-semibold">
-                            <span className=" bg-green-500 p-1 rounded-full">
+                        <Link to={'/'} className="text-2xl bg-green-600 border-2 border-white rounded-t-lg flex gap-x-1 text-white items-center justify-center mb-4 py-3 font-semibold">
+                            <span className=" bg-green-500 p-1 rounded-full shadow-md">
                             <Bus className="text-white size-8 " />
                             </span>
                             <span>BusNaija</span>
@@ -22,7 +22,8 @@ const AuthLayout = ({ children }) => {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 0.5 }}
                                 exit={{ opacity: 0 }}
-                                className="w-[95%] mx-auto md:min-w-[400px]">
+            
+                                className="w-[95%] mx-auto md:w-[400px]">
                                 {children}
                             </motion.div>
                     </div>

@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import { apiError } from '../utils/apiError.js';
-import User from '../models/User.js';
+import User from '../models/user.model.js';
 
 export const checkAuth = (req, res, next) => {
     // check if the authorization header present
@@ -20,7 +20,6 @@ export const checkAuth = (req, res, next) => {
     })
 
 }
-
 
 export const isAdmin = async (req, res, next)=>{
     try {
@@ -53,7 +52,7 @@ export const busOperator = async (req, res, next) =>{
     try {
         const {userId} = req.user;
         const user = await User.find({_id:userId});
-        if(user.role !== 'bus operator'){
+        if(user.role !== 'bus operator' ||  user.role !== 'admin'){
             throw apiError('Unauthorized', 401)
         }
         next()
@@ -62,3 +61,16 @@ export const busOperator = async (req, res, next) =>{
     }
 }
 
+export const isVerified = async(req,res,next)=>{
+    try {
+        const {userId} = req.user;
+        const user = await User.find({_id:userId});
+        if(!user.isVerified){
+            throw apiError('Please verify your account', 401)
+
+        }
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
