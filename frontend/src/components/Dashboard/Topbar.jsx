@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import useAuth from "../../hooks/useAuth";
 import { toggleSideMenu } from "../../features/dashboard/dashboardSlice";
-import { ChevronLeft, ChevronRight, LogOut } from "lucide-react";
+import { ChevronLeft, ChevronRight, Power } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../features/auth/authSlice";
 
@@ -33,7 +33,7 @@ const Topbar = () => {
                         </div>
                     </div>
                         <button onClick={handleLogout} className="bg-red-500 inline-block p-1 rounded-md text-white">
-                            <LogOut/>
+                        <Power />
                         </button>
                 </div>
             </div>

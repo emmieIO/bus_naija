@@ -2,7 +2,13 @@ import { apiError } from './../utils/apiError.js';
 import User from "../models/user.model.js"
 import { generateToken } from '../utils/tokens.js';
 import crypto from 'crypto';
-import { sendVerificationEmail, sendWelcomeMail } from '../utils/mail.js';
+import { 
+    sendPasswordResetSuccessMail,
+    sendResetLinkMail,
+    sendVerificationEmail,
+    sendWelcomeMail
+} from '../utils/mail.js';
+
 
 class UserService {
 
@@ -101,6 +107,62 @@ class UserService {
                 code: verificationCode
             })
             return user
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async forgotPassword(data){
+        try {
+            const {email} = data;
+            const user = await User.findOne({email})
+            if (!user) {
+                throw apiError('Enter a valid email', 404)
+            }
+            // throttle request
+            if (user.resetTokenExpiresAt > Date.now()) {
+                throw apiError('Wait 15 minutes before requesting again', 403)
+            }
+            const resetToken = user.getResetPasswordToken();
+            user.save();
+            // send mail with reset token
+            sendResetLinkMail({firstname:user.firstname, email:email, resetToken:user.resetToken})
+            return true;
+        } catch (error) {
+            throw error
+        }
+    }
+
+    async resetPassword(data){
+        try {
+            const {newPassword, passwordConfirmation, resetToken} = data;
+            const user = await User.findOne({resetToken})
+            if (!user) {
+                throw apiError('Invalid/Expired reset token', 403)
+            }
+            if (!newPassword || !passwordConfirmation) {
+                throw apiError('all fields are required', 403)
+            }
+            // check if newPassword matches passwordConfirmation
+            if (newPassword !== passwordConfirmation) {
+                console.log(newPassword,passwordConfirmation);
+                throw apiError('Passwords do not match', 403)
+            }
+            // check if reset token has expired
+            if (user.resetTokenExpiresAt < Date.now()) {
+                throw apiError('Invalid/Expired reset token', 403)
+            }
+            // set new password
+            user.password = newPassword;
+            user.resetToken = undefined;
+            user.resetTokenExpiresAt = undefined;
+            user.save()
+            sendPasswordResetSuccessMail({
+                email: user.email,
+                firstname: user.firstname
+            })
+            return true
+
         } catch (error) {
             throw error;
         }

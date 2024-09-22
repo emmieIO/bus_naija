@@ -41,7 +41,7 @@ const Login = () => {
                     </div>
                     <div>
                         <div className='mt-4'>
-                            <p className='text-right'><Link to='/register' className='text-green-600'>Forgot Password</Link></p>
+                            <p className='text-right'><Link to='/forgot-password' className='text-green-600'>Forgot Password</Link></p>
                         </div>
                     </div>
                     <div className='mt-4'>

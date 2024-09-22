@@ -14,6 +14,8 @@ import ContactUs from "./screens/ContactUs";
 import { useDispatch } from 'react-redux';
 import { checkAuthStatus } from "./features/auth/authSlice";
 import VerifyAccount from "./screens/auth/VerifyAccount";
+import ForgotPassword from "./screens/auth/ForgotPassword";
+import ResetPassword from "./screens/auth/ResetPassword";
 
 
 
@@ -43,6 +45,8 @@ function App() {
         <Route path="/Login" element={<Login />}/>
         <Route path="/register" element={<Register />} />
         <Route path="/verify-account" element={<VerifyAccount />} />
+        <Route path="/forgot-password" element={<ForgotPassword/>}/>
+        <Route path="/reset-password" element={<ResetPassword/>}/>
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Dashboard/>

@@ -1,84 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Email Message</title>
-    <style>
-        body {
-            font-family: "Poppins", system-ui, Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            max-width: 600px;
-            margin: 40px auto;
-            background-color: #fff;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .header {
-            background-color: #098524;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .content {
-            padding: 20px;
-        }
-        .content h2 {
-            margin-top: 0;
-        }
-        .button {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button:hover {
-            background-color: #444;
-        }
-        .footer {
-            background-color: #098524;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            border-radius: 0 0 10px 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="header">
-            <h1>Transactional Email Template</h1>
-        </div>
-        <div class="content">
-            <h2>One-Time Password (OTP)</h2>
-            <p>Dear [User Name],</p>
-            <p>We have sent a one-time password (OTP) to your mobile number. Please enter the OTP below to complete the process.</p>
-            <p>Your OTP is: [OTP]</p>
-            <p>If you didn't receive the OTP, please click the button below to resend.</p>
-            <button class="button">Resend OTP</button>
-        </div>
-        <div class="footer">
-            <p>&copy; [Year] [Company Name]. All rights reserved.</p>
-        </div>
-    </div>
-</body>
-</html> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <title>Welcome Email</title>
+    <title>Password Reset Successful</title>
     <style>
         body {
             font-family: "Poppins", system-ui, Arial, sans-serif;
@@ -95,6 +14,11 @@
             padding: 0;
             background-color: #f9f9f9;
         }
+        a, a:visited, a:active, a:focus {
+            text-decoration: none;
+            color: #fff;
+        }
+        
         .container {
             max-width: 600px;
             margin: 40px auto;
@@ -105,7 +29,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         .header {
-            background-color: #098524;
+            background-color: #34C759; /* Green color to indicate success */
             color: #fff;
             padding: 10px;
             text-align: center;
@@ -122,7 +46,7 @@
             margin-top: 0;
         }
         .button {
-            background-color: #098524;
+            background-color: #34C759; /* Green color to indicate success */
             color: #fff;
             padding: 10px 20px;
             border: none;
@@ -130,10 +54,10 @@
             cursor: pointer;
         }
         .button:hover {
-            background-color: #099924;
+            background-color: #36D76A;
         }
         .footer {
-            background-color: #098524;
+            background-color: #34C759; /* Green color to indicate success */
             color: #fff;
             padding: 10px;
             text-align: center;
@@ -144,28 +68,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>Welcome to Bus Naija 🖐🏾🥰!</h1>
+            <h1>Password Reset Successful</h1>
         </div>
         <div class="content">
-            <div>
-
-            </div>
             <p>Dear [User Name],</p>
-            <p>We’re thrilled to have you on board. With us, booking your next travel experience is just a few clicks away. Whether you're planning a quick getaway or a long trip, we’re here to make your journey smooth and hassle-free</p>
-            <strong>Here's what to expect;</strong>
-            <ul>
-                <li>Access to a wide range of bus operators and routes</li>
-                <li>Real-time bus schedules and ticket prices</li>
-                <li>Secure payment options</li>
-                <li>24/7 customer support</li>
-            </ul>
+            <p>Your password has been successfully reset. You can now log in to your account using your new password.</p>
             <p>If you have any questions or need assistance, feel free to reply to this email or contact our support team at [Support Email].</p>
-
-            <p>Thank you for choosing [Your Company Name]. Let’s make every trip memorable!</p>
+            <p>Best regards,</p>
             <p>[Your Name]</p>
             <strong>[Your Company Name]</strong>
-            <p>Safe travels!</p>
-            <button class="button">Book Now</button>
         </div>
         <div class="footer">
             <p>&copy; [Year] [Company Name]. All rights reserved.</p>

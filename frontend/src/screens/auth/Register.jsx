@@ -36,7 +36,6 @@ const Register = () => {
     }
     return (
         <AuthLayout>
-            
                 <h1 className='text-2xl font-medium text-gray-900 text-center'>Create new account</h1>
                 <p className='text-gray-500 text-center'>Signup for an account with busnaija</p>
                 <form className='mt-4 space-y-4'>

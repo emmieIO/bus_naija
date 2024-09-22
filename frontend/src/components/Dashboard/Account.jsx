@@ -14,7 +14,7 @@ const Account = () => {
             <div className="border-b mb-4 mt-2 border-blue-gray-300 pb-4 flex justify-between items-center">
                 <button className=" p-0.5 flex rounded
             transition-colors relative gap-2 w-full items-center">
-                    <img className="size-7 rounded shrink-0 bg-green-500 shadow" src="https://api.dicebear.com/9.x/fun-emoji/svg" alt="avatar" />
+                    <img className="size-7 rounded shrink-0 bg-green-100 shadow" src="https://api.dicebear.com/9.x/fun-emoji/svg" alt="avatar" />
                     <div className="text-start">
                         <span className="text-xs font-medium block">{user.firstname} {user.lastname}</span>
                         <span className="text-xs font-normal block">{user.email}</span>

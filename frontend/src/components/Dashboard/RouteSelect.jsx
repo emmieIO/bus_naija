@@ -1,29 +1,38 @@
 import { Link, useLocation } from "react-router-dom"
 import { PropTypes } from 'prop-types';
 import { Bus, Cog, LayoutDashboard, LocateFixed, User, Users } from "lucide-react";
+import useAuth from "../../hooks/useAuth";
+
 
 const RouteSelect = () => {
+    const { user } = useAuth();
 
     return (
         <div className="space-y-1">
-            {
-                adminLinks.map((link, index)=>{
-                    return<div key={index} >
+            { user.role == 'admin'?
+               ( adminLinks.map((link, index)=>{
+                    return <div key={index} >
                     <RouteLink Icon={link.icon} title={link.title} link={link.link} />
                     </div>
-                })
+                })) : (
+                    customerLinks.map((link, index)=>{
+                        return <div key={index} >
+                        <RouteLink Icon={link.icon} title={link.title} link={link.link} />
+                        </div>
+                    })
+                )
             }
         </div>
     )
 }
 
-// const customerLinks = [
-//     {
-//         title: "",
-//         icon: "",
-//         link: ""
-//     }
-// ]
+const customerLinks = [
+    {
+        title: "Overview",
+        icon: LayoutDashboard,
+        link: "/"
+    }
+]
 const adminLinks = [
     {
         title: "Dashboard",

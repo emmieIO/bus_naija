@@ -5,7 +5,9 @@ import {
     verifyEmail,
     resendCode,
     checkAuthStatus,
-    clearErrors
+    forgotPassword,
+    clearErrors,
+    resetPassword
 
 } from "../features/auth/authSlice";
 import { useEffect } from "react";
@@ -30,6 +32,8 @@ const useAuth = () => {
         checkAuthStatus: () => dispatch(checkAuthStatus()),
         verifyEmail: (data) => dispatch(verifyEmail(data)),
         resendCode: (data) => dispatch(resendCode(data)),
+        forgotPassword: (data) => dispatch(forgotPassword(data)),
+        resetPassword: (data) => dispatch(resetPassword(data)),
         clearErrors: () => dispatch(clearErrors())
     };
 }
