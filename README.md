@@ -7,7 +7,7 @@
 - [x] Implement JWT authentication
 - [x] Add role-based authorization (Passenger, Bus Operator, Admin)
 - [] Create user profile management endpoints (view, update)
-- [] Implement password reset functionality
+- [*] Implement password reset functionality
 - [*] Set up email verification system
 - [*] Create admin dashboard for user management
 
