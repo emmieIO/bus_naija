@@ -7,9 +7,9 @@
 - [x] Implement JWT authentication
 - [x] Add role-based authorization (Passenger, Bus Operator, Admin)
 - [] Create user profile management endpoints (view, update)
-- [*] Implement password reset functionality
-- [*] Set up email verification system
-- [*] Create admin dashboard for user management
+- [x] Implement password reset functionality
+- [x] Set up email verification system
+- [x] Create admin dashboard for user management
 
 ## Week 2: Bus Operator and Bus Management
 - [] Implement CRUD operations for Bus Operator management
