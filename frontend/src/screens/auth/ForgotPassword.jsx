@@ -31,7 +31,7 @@ const ForgotPassword = () => {
     <AuthLayout>
       <h1 className='text-2xl font-medium text-gray-900 text-center'>Password Reset</h1>
       <p className='text-gray-500  text-center'>Enter a valid email address to reset your password</p>
-      <form className='mt-4'>
+      <form className='mt-4' onSubmit={handleForgotPassword}>
         <div>
           <label htmlFor='email' className='block text-sm text-gray-600'>Email</label>
           <input
@@ -43,8 +43,7 @@ const ForgotPassword = () => {
         </div>
         <div className='mt-4'>
           <button
-          onClick={handleForgotPassword}
-          type='button'
+          type='submit'
           className='w-full bg-green-600 text-white p-2 rounded-md flex items-center justify-center gap-2'>
             Reset Password</button>
         </div>

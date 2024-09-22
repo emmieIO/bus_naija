@@ -2,7 +2,6 @@ import {Route, Routes } from "react-router-dom"
 import Login from "./screens/auth/Login"
 import Register from "./screens/auth/Register"
 import { Toaster } from 'react-hot-toast';
-import ProtectedRoute from "./components/ProtectedRoute"
 import Dashboard from './screens/Dashboard';
 import useAuth  from './hooks/useAuth';
 import { useEffect } from "react";
@@ -26,7 +25,6 @@ function App() {
  const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(checkAuthStatus());
     if(!authChecked && !loading){
       dispatch(checkAuthStatus())
     }
@@ -47,11 +45,7 @@ function App() {
         <Route path="/verify-account" element={<VerifyAccount />} />
         <Route path="/forgot-password" element={<ForgotPassword/>}/>
         <Route path="/reset-password" element={<ResetPassword/>}/>
-        <Route path="/dashboard" element={
-          <ProtectedRoute>
-            <Dashboard/>
-          </ProtectedRoute>
-        }/>
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
       <Toaster />
 

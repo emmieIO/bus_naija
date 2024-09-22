@@ -15,15 +15,15 @@ const ResetPassword = () => {
     const handleResetPassword = async (e) => {
         e.preventDefault()
         const res = await resetPassword({ newPassword, passwordConfirmation, resetToken: token })
-        if(res.error){
-            toast.error(res.payload.message,{
-                id:"reset-password-error"
+        if (res.error) {
+            toast.error(res.payload.message, {
+                id: "reset-password-error"
             })
         }
-        if(res.payload.success){
-        toast.success(res.payload.message,{
-            id:"reset-password-success"
-        })
+        if (res.payload.success) {
+            toast.success(res.payload.message, {
+                id: "reset-password-success"
+            })
         }
     }
 
@@ -31,23 +31,22 @@ const ResetPassword = () => {
         <AuthLayout>
             <h1 className='text-2xl font-medium text-gray-900 text-center'>Password Reset</h1>
             <p className='text-gray-500  text-center'>Enter a valid email address to reset your password</p>
-            <form className='mt-4 space-y-3'>
+            <form className='mt-4 space-y-3' onSubmit={handleResetPassword}>
                 <div>
                     <label htmlFor='email' className='block text-sm text-gray-600'>New Password</label>
                     <input type='password'
-                    onChange={(e) => setNewPassword(e.target.value)}
-                    id='newPassword' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        onChange={(e) => setNewPassword(e.target.value)}
+                        id='newPassword' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                 </div>
                 <div>
                     <label htmlFor='email' className='block text-sm text-gray-600'>Confirm Password</label>
                     <input
-                    onChange={(e) => setPasswordConfirmation(e.target.value)}
-                    type='password' id='newPasswordConfirm' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
+                        onChange={(e) => setPasswordConfirmation(e.target.value)}
+                        type='password' id='newPasswordConfirm' className='w-full mt-1 p-2 border border-gray-300 rounded-md' />
                 </div>
                 <div className='mt-4'>
                     <button
-                        type='button'
-                        onClick={handleResetPassword}
+                        type='submit'
                         className='w-full bg-green-600 text-white p-2 rounded-md flex items-center justify-center gap-2'>
                         Reset Password</button>
                 </div>
