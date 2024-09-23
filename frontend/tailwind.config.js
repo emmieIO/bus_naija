@@ -10,7 +10,7 @@ export default withMT({
     },
     extend: {
       backgroundImage:{
-        'hero-pattern': "url('./src/assets/home-images/hero-texture.png')",
+        'hero-pattern': "url('/assets/home-images/hero-texture.png')",
       }
     },
   },

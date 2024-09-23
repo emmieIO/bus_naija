@@ -89,7 +89,7 @@ export default function Navigation() {
     );
 
     return (
-        <Navbar className="max-w-full mx-auto shadow-none rounded-none px-5 py-2 lg:px-8 lg:py-4">
+        <Navbar className="max-w-full sticky top-0 mx-auto shadow-none rounded-none px-5 py-2 lg:px-8 lg:py-4">
             <div className=" flex items-center justify-between text-blue-gray-900">
                 <Link
                     to="/"
@@ -194,7 +194,7 @@ export default function Navigation() {
                 </IconButton>
             </div>
             <Collapse open={openNav}>
-                <div className="container mx-auto">
+                <div className="container mx-auto sticky top-0">
                     {navList}
                     <div className="flex items-center gap-x-1">
                         <Button color="green" fullWidth variant="text" size="sm" className="">

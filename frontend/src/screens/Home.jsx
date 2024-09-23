@@ -1,5 +1,5 @@
 import AppLayout from '../shared/AppLayout';
-import heroImg from "../assets/home-images/hero.png";
+import heroImg from "/assets/home-images/hero.png";
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion'
 import { BusFront, MapPin, MapPinCheck, User } from 'lucide-react';
