@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 
 const ForgotPassword = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(null);
   const { forgotPassword } = useAuth();
 
   const handleForgotPassword = async (e)=>{
@@ -23,8 +23,6 @@ const ForgotPassword = () => {
   })
 
   }
-    
-
 
   }
   return (

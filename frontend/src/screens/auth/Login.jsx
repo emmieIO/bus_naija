@@ -20,8 +20,15 @@ const Login = () => {
         e.preventDefault();
         try {
             const result = await login({ email, password })
-            if(!loading && !result.error){
-                toast.success("Login successful")
+            if (result.error && !Array.isArray(result.payload.errors)) {
+                toast.error(result.payload.message, {
+                    id: 'login-error'
+                })
+            }
+            if (result.payload.success) {
+                toast.success(result.payload.message, {
+                    id: 'login-success'
+                })
             }
         } catch (error) {
             console.log(error);

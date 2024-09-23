@@ -6,8 +6,13 @@ export default withMT({
     fontFamily:{
       sans: ['Poppins', 'system-ui'],
       body: ['Rubik', 'system-ui'],
+      logo:["Sedan SC","Josefin Sans", 'sans-serif']
     },
-    extend: {},
+    extend: {
+      backgroundImage:{
+        'hero-pattern': "url('./src/assets/home-images/hero-texture.png')",
+      }
+    },
   },
   plugins: [],
 });

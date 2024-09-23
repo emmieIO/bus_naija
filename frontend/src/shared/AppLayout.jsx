@@ -14,7 +14,7 @@ const AppLayout = ({children}) => {
         exit={{ opacity: 0 }}
     >
     <Navigation/>
-        <div className="min-h-[70vh] flex justify-center items-center">
+        <div className="min-h-[70vh]">
         {children}
       </div>
       <Footer/>
